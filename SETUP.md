@@ -97,7 +97,7 @@ Notice how the batch size:
 ## Using in Your Project
 
 ```go
-import "github.com/amirafroozeh/load-aware-batcher"
+import "github.com/amirafroozeh1/Load-Aware-Batcher"
 
 // Create batcher
 b, err := batcher.New(batcher.Config{

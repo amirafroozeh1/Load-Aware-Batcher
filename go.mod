@@ -1,3 +1,3 @@
-module github.com/amirafroozeh/load-aware-batcher
+module github.com/amirafroozeh1/Load-Aware-Batcher
 
 go 1.21

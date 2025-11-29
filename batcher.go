@@ -34,16 +34,16 @@ func (lf *LoadFeedback) LoadScore() float64 {
 	// Weighted combination of different metrics
 	score := 0.0
 
-	// CPU load (40% weight)
-	score += lf.CPULoad * 0.4
+	// CPU load (60% weight) - increased from 40% to be more responsive to CPU pressure
+	score += lf.CPULoad * 0.6
 
-	// Queue depth normalized (20% weight)
+	// Queue depth normalized (15% weight)
 	// Assume queue depth > 100 is critical
 	queueScore := math.Min(float64(lf.QueueDepth)/100.0, 1.0)
-	score += queueScore * 0.2
+	score += queueScore * 0.15
 
-	// Error rate (30% weight)
-	score += lf.ErrorRate * 0.3
+	// Error rate (15% weight)
+	score += lf.ErrorRate * 0.15
 
 	// DB locks normalized (10% weight)
 	// Assume > 50 locks is critical
@@ -262,7 +262,7 @@ type Stats struct {
 
 func (b *Batcher) processBatch(ctx context.Context, batch []any) error {
 	feedback, err := b.cfg.HandlerFunc(ctx, batch)
-	
+
 	// Store feedback for batch size adjustment
 	if feedback != nil {
 		b.mu.Lock()
@@ -309,17 +309,17 @@ func (b *Batcher) adjustBatchSize() {
 	avgLoad /= float64(len(b.recentFeedback))
 
 	// Adjust batch size based on load
-	// Low load (< 0.3) -> increase batch size
-	// Medium load (0.3 - 0.7) -> keep current size
-	// High load (> 0.7) -> decrease batch size
+	// Low load (< 0.25) -> increase batch size
+	// Medium load (0.25 - 0.55) -> keep current size
+	// High load (> 0.55) -> decrease batch size
 
 	newSize := b.currentBatchSize
 
-	if avgLoad < 0.3 {
+	if avgLoad < 0.25 {
 		// Backend is idle, increase batch size
 		increase := float64(b.currentBatchSize) * b.cfg.AdjustmentFactor
 		newSize = b.currentBatchSize + int(math.Max(increase, 1))
-	} else if avgLoad > 0.7 {
+	} else if avgLoad > 0.55 {
 		// Backend is overloaded, decrease batch size
 		decrease := float64(b.currentBatchSize) * b.cfg.AdjustmentFactor
 		newSize = b.currentBatchSize - int(math.Max(decrease, 1))

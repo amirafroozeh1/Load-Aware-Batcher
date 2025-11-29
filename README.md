@@ -31,7 +31,7 @@ Most batchers use fixed batch sizes. The problem:
 ### Installation
 
 ```bash
-go get github.com/amirafroozeh/load-aware-batcher
+go get github.com/amirafroozeh1/Load-Aware-Batcher
 ```
 
 ### Basic Usage
@@ -42,7 +42,7 @@ package main
 import (
     "context"
     "time"
-    "github.com/amirafroozeh/load-aware-batcher"
+    "github.com/amirafroozeh1/Load-Aware-Batcher"
 )
 
 func main() {

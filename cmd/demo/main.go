@@ -9,8 +9,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/amirafroozeh/load-aware-batcher"
-	"github.com/amirafroozeh/load-aware-batcher/simulator"
+	"github.com/amirafroozeh1/Load-Aware-Batcher"
+	"github.com/amirafroozeh1/Load-Aware-Batcher/simulator"
 )
 
 func main() {

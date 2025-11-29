@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/amirafroozeh/load-aware-batcher"
+	"github.com/amirafroozeh1/Load-Aware-Batcher"
 )
 
 // Backend simulates a backend service with varying load

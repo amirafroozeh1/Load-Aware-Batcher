@@ -83,8 +83,8 @@ Expected output:
 --- PASS: TestBatcher_Add (0.02s)
 ...
 PASS
-ok      github.com/amirafroozeh/load-aware-batcher              1.234s
-ok      github.com/amirafroozeh/load-aware-batcher/simulator    0.567s
+ok      github.com/amirafroozeh1/Load-Aware-Batcher              1.234s
+ok      github.com/amirafroozeh1/Load-Aware-Batcher/simulator    0.567s
 ```
 
 ### 3. Run Benchmarks
